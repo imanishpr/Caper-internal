@@ -1,0 +1,136 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.khelacademy.apis</groupId>
+    <artifactId>APIs</artifactId>
+    <version>1.0.0</version>
+    <name>Khelacademy</name>
+
+    <url>https://khelacademy.com</url>
+
+    <organization>
+        <name>The Holon Platform</name>
+        <url>https://holon-platform.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Manish Premi</name>
+            <email>manishpremi20@gmail.com</email>
+            <organization>Caper's Khelacademy</organization>
+            <organizationUrl>https://khelacademy.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <holon.platform.version>5.0.3</holon.platform.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Holon Platform BOM -->
+            <dependency>
+                <groupId>com.holon-platform</groupId>
+                <artifactId>bom</artifactId>
+                <version>${holon.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <!-- Holon JAX-RS using Jersey -->
+        <dependency>
+            <groupId>com.holon-platform.jaxrs</groupId>
+            <artifactId>holon-starter-jersey</artifactId>
+        </dependency>
+        <!-- Swagger support -->
+        <dependency>
+            <groupId>com.holon-platform.jaxrs</groupId>
+            <artifactId>holon-jaxrs-swagger</artifactId>
+        </dependency>
+
+        <!-- Actuator and webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.3.11.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>1.5.8.RELEASE</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>com.holon-platform.core</groupId>
+            <artifactId>holon-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+      <!-- https://mvnrepository.com/artifact/com.instamojo/instamojo-java -->
+		<dependency>
+		    <groupId>com.instamojo</groupId>
+		    <artifactId>instamojo-java</artifactId>
+		    <version>1.0.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
+		
+    </dependencies>
+    <build>
+        <plugins>
+            <!-- Spring Boot plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.8.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

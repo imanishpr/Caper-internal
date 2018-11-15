@@ -1,0 +1,19 @@
+spring:
+  jersey:
+    type: filter
+    
+holon:
+  jersey:
+    forwardOn404: true
+    
+server:
+  port: 9999
+  
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.khelacademy: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: var/log/capers/application.log

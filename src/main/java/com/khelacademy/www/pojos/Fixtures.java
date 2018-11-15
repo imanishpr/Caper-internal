@@ -1,0 +1,36 @@
+package com.khelacademy.www.pojos;
+
+import java.util.Date;
+
+public class Fixtures {
+	private User user1;
+	private User user2;
+	private Integer level;
+	private Date startTime;
+	public User getUser1() {
+		return user1;
+	}
+	public void setUser1(User user1) {
+		this.user1 = user1;
+	}
+	public User getUser2() {
+		return user2;
+	}
+	public void setUser2(User user2) {
+		this.user2 = user2;
+	}
+	public Integer getLevel() {
+		return level;
+	}
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+	public Date getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	
+
+}

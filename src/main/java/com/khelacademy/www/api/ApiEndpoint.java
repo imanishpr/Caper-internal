@@ -15,6 +15,8 @@
  */
 package com.khelacademy.www.api;
 
+import com.khelacademy.daoImpl.*;
+import com.khelacademy.www.pojos.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -22,7 +24,10 @@ import io.swagger.annotations.ApiResponses;
 import redis.clients.jedis.Jedis;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -53,19 +58,6 @@ import com.khelacademy.dao.EventDao;
 import com.khelacademy.dao.HomeDao;
 import com.khelacademy.dao.SportsDao;
 import com.khelacademy.dao.UserDao;
-import com.khelacademy.daoImpl.CityDaoImpl;
-import com.khelacademy.daoImpl.BookEventDaoImpl;
-import com.khelacademy.daoImpl.EventDaoImpl;
-import com.khelacademy.daoImpl.HomeDaoImpl;
-import com.khelacademy.daoImpl.SportsDaoImpl;
-import com.khelacademy.daoImpl.UserDaoImpl;
-import com.khelacademy.www.pojos.ApiFormatter;
-import com.khelacademy.www.pojos.BookingRequestObject;
-import com.khelacademy.www.pojos.MyErrors;
-import com.khelacademy.www.pojos.OTPContent;
-import com.khelacademy.www.pojos.Order;
-import com.khelacademy.www.pojos.UploadableEvent;
-import com.khelacademy.www.pojos.User;
 import com.khelacademy.www.services.ServiceUtil;
 import com.khelacademy.www.utils.Constants;
 import com.khelacademy.www.utils.InstamojoClient;
@@ -127,7 +119,28 @@ public class ApiEndpoint {
         EventDao event = new EventDaoImpl();
         return event.getEventByCityId(cityId, gameId);
     }
-    
+    @ApiOperation("get event users request")
+    @ApiResponses({@ApiResponse(code = 200, message = "OK", response = String.class)})
+    @GET
+    @Path("/eventusers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response geteventsUsers(@QueryParam("event_id") Integer eventId){
+        MatchDrawImpl matchDraw = new MatchDrawImpl();
+        try {
+            ApiFormatter<Map<String, List<Fixtures>>>  events= ServiceUtil.convertToSuccessResponse(matchDraw.makeFixture(matchDraw.groupPlayers(eventId)));
+            return Response.ok(new GenericEntity<ApiFormatter<Map<String, List<Fixtures>>>>(events) {
+            }).build();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @ApiOperation("get event Prices request")
     @ApiResponses({@ApiResponse(code = 200, message = "OK", response = String.class)})
     @GET

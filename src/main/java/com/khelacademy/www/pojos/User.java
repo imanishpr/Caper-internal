@@ -12,7 +12,9 @@ public class User {
     private String status;
     private String welcomeDate;
     private String sessionValue;
-
+    private Integer gameId;
+    private String underX;
+    private Integer done;
     public String getEmail() {
         return email;
     }
@@ -101,4 +103,27 @@ public class User {
 		this.sessionValue = sessionValue;
 	}
 
+    public Integer getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
+    }
+
+    public String getUnderX() {
+        return underX;
+    }
+
+    public void setUnderX(String underX) {
+        this.underX = underX;
+    }
+
+    public Integer getDone() {
+        return done;
+    }
+
+    public void setDone(Integer done) {
+        this.done = done;
+    }
 }

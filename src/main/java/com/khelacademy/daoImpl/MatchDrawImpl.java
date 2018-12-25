@@ -68,6 +68,7 @@ public class MatchDrawImpl implements MatchDraw {
 	@Override
 	public Map<String, List<Fixtures>> makeFixture(Map<String, List<User>> groups) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         Map<String, List<Fixtures>> finalFixture = new HashMap<String, List<Fixtures>>();
+        counterForPools=0;
         for (Map.Entry<String, List<User>> entry : groups.entrySet()) {
 
             Map<String,List<User>> personByUnderX = new HashMap<>();
@@ -156,10 +157,10 @@ public class MatchDrawImpl implements MatchDraw {
             if( totalPlayerInSexWise > 128) {
                 int splitOnIndex = underX.getValue().size() / 2;
                 dU.addAll(processFixture(catSex, new HashMap<String, List<User>>(){{
-                    put(ByesContants.POOL[counterForPools++] +"-"+ underX.getKey() +"-"+ catSex , underX.getValue().subList(0,splitOnIndex));
+                    put(ByesContants.POOL[counterForPools++] +"-"+ underX.getKey() , underX.getValue().subList(0,splitOnIndex));
                 }}));
                 dU.addAll(processFixture(catSex, new HashMap<String, List<User>>(){{
-                    put(ByesContants.POOL[counterForPools++] +"-"+ underX.getKey() +"-"+ catSex, underX.getValue().subList(splitOnIndex,totalPlayerInSexWise));
+                    put(ByesContants.POOL[counterForPools++] +"-"+ underX.getKey() , underX.getValue().subList(splitOnIndex,totalPlayerInSexWise));
                 }}));
             }else {
                 DrawHelper d = new DrawHelper();
